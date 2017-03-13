@@ -6,49 +6,42 @@
 package iclinic;
 
 import iclinic.models.DbConn;
-import iclinic.models.Student;
+import iclinic.views.MainWindow;
+import iclinic.utils.Password;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  *
  * @author obiero
  */
 public class Iclinic {
-    /**
-     * @param args the command line arguments
-     */
-
-    public static Properties config = new Properties();
-    private static DbConn dbConn = new DbConn(config);
+    
+    //public static final Properties CONFIG = new Properties();
+    public static final ResourceBundle CONFIG =
+            ResourceBundle.getBundle("iclinic/config/config");
+    
+    public static final DbConn    DB_CONN = new DbConn(CONFIG);
+    
+    public Iclinic()
+    {
         
-    public static void main(String[] args) {
+    }
         
-       InputStream input = null; 
-       try {
-
-		input = new FileInputStream("src/iclinic/config/config.properties");
-		config.load(input);
-
-
-	} catch (IOException ex) {
-		ex.printStackTrace();
-	} finally {
-		if (input != null) {
-			try {
-				input.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-        
-        Student std = new Student(dbConn);
-        
-        //System.out.println(std.getFname());
-         
+    public static void main(String[] args) 
+    {     
+        Iclinic app = new Iclinic();
+        app.start();
+    }
+    
+    public void start()
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
+        mainWindow.setVisible(true);
     }
     
 }

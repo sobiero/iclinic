@@ -13,22 +13,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class DbConn {
    
     private static Connection conn = null;
-    private static Properties config = null;
+    //private static Properties config = null;
+    private static ResourceBundle config = null;
     
-    public DbConn(Properties prop )
+    public DbConn(ResourceBundle conf )
     {
-      config = prop;  
+      config = conf;  
     }
     
     public Connection getConn(){
                 
-        String url = config.getProperty("dbUrl");
-        String username = config.getProperty("dbUser");
-        String password = config.getProperty("dbPassword");
+        String url = config.getString("dbUrl");
+        String username = config.getString("dbUser");
+        String password = config.getString("dbPassword");
         //System.out.println("Connecting database..." );
         
         try {
