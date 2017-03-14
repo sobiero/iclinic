@@ -13,24 +13,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 public class DbConn {
    
     private static Connection conn = null;
-    //private static Properties config = null;
-    private static ResourceBundle config = null;
+    private static Properties config = null;
+    //private static ResourceBundle config = null;
     
-    public DbConn(ResourceBundle conf )
+    public DbConn(Properties conf )
     {
       config = conf;  
     }
     
     public Connection getConn(){
                 
-        String url = config.getString("dbUrl");
-        String username = config.getString("dbUser");
-        String password = config.getString("dbPassword");
+        String url = config.getProperty("dbUrl");
+        String username = config.getProperty("dbUser");
+        String password = config.getProperty("dbPassword");
         //System.out.println("Connecting database..." );
         
         try {
@@ -53,7 +52,8 @@ public class DbConn {
     
     public void close()
     {
-        try {
+        try 
+        {
             if (conn != null) { conn.close(); }
 
         } catch (SQLException e)

@@ -7,12 +7,9 @@ package iclinic;
 
 import iclinic.models.DbConn;
 import iclinic.views.MainWindow;
-import iclinic.utils.Password;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 /**
  *
@@ -20,14 +17,30 @@ import java.util.ResourceBundle;
  */
 public class Iclinic {
     
-    //public static final Properties CONFIG = new Properties();
-    public static final ResourceBundle CONFIG =
-            ResourceBundle.getBundle("iclinic/config/config");
-    
+    public static final Properties CONFIG = new Properties();
+   
     public static final DbConn    DB_CONN = new DbConn(CONFIG);
     
     public Iclinic()
     {
+        try 
+        {
+
+            InputStream input = getClass().getClassLoader()
+                    .getResourceAsStream("iclinic/config/config.properties");
+
+            CONFIG.load(input);
+                        
+        } 
+        catch (IOException e)
+        {
+            System.out.println("Error loading properties file config.properties" + e.getMessage());
+        
+        } 
+        finally 
+        {
+        
+        }
         
     }
         

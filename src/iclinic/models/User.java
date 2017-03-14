@@ -10,7 +10,6 @@ package iclinic.models;
  * @author obiero
  */
 
-import iclinic.Iclinic;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
