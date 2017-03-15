@@ -18,27 +18,31 @@ import java.util.Properties;
 public class Iclinic {
     
     public static final Properties CONFIG = new Properties();
-   
     public static final DbConn    DB_CONN = new DbConn(CONFIG);
     
     public Iclinic()
     {
         try 
         {
-
             InputStream input = getClass().getClassLoader()
                     .getResourceAsStream("iclinic/config/config.properties");
-
             CONFIG.load(input);
+            input.close();
                         
         } 
-        catch (IOException e)
+        catch (IOException e )
         {
-            System.out.println("Error loading properties file config.properties" + e.getMessage());
-        
+            System.out.println("Error loading properties file config.properties"
+                    + e.getMessage());     
+        } 
+        catch (Exception e )
+        {
+            System.out.println("Error loading properties file config.properties"
+                    + e.getMessage());
         } 
         finally 
         {
+            
         
         }
         

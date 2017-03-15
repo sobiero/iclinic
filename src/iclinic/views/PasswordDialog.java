@@ -17,6 +17,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import javax.swing.JDialog ;
 import javax.swing.JLabel ;
@@ -89,7 +91,14 @@ class PasswordDialog extends JDialog {
                 
             }  
         });
-         
+        
+        jpfPassword.addKeyListener(new KeyAdapter() {
+           public void keyPressed(KeyEvent e) {
+              if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+                 jbtOk.doClick();
+              }
+           }
+        });
         
         jbtOk.addActionListener(new ActionListener() {
             @Override
