@@ -16,7 +16,7 @@ import java.util.Properties;
 
 public class DbConn {
    
-    private static Connection conn = null;
+    private static Connection conn   = null;
     private static Properties config = null;
     //private static ResourceBundle config = null;
     
@@ -26,7 +26,12 @@ public class DbConn {
     }
     
     public Connection getConn(){
-                
+        
+        if (conn != null)
+        {
+            return conn;
+        }
+        
         String url = config.getProperty("dbUrl");
         String username = config.getProperty("dbUser");
         String password = config.getProperty("dbPassword");
