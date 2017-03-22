@@ -5,7 +5,13 @@
  */
 package iclinic.views;
 
-import iclinic.views.patients.AddPatient;
+import iclinic.views.patients.PatientForm;
+import iclinic.views.patients.PatientSearchForm;
+import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import jiconfont.icons.FontAwesome;
+import jiconfont.swing.IconFontSwing;
 
 /**
  *
@@ -18,16 +24,23 @@ public class MainWindow extends javax.swing.JFrame {
      */
     
     public static PasswordDialog passDialog;
-    public static AddPatient addPatient;
+    public static PatientForm patientForm;
+    public static PatientSearchForm patientSearchForm;
      
     public MainWindow() {
         
-        addPatient = new AddPatient(this, true);
-        addPatient.setVisible(false);
+        patientForm = new PatientForm(this, true);
+        patientForm.setLocationRelativeTo(this);
+        patientForm.setVisible(false);
+  
+        patientSearchForm = new PatientSearchForm(this, true);
+        patientSearchForm.setLocationRelativeTo(this);
+        patientSearchForm.setVisible(false);
         
+         
         passDialog = new PasswordDialog(this, true);
         passDialog.setVisible(true);
-        
+              
         initComponents();
     }
 
@@ -43,30 +56,27 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jPatientMenu = new javax.swing.JMenu();
         jMenuAddPatient = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuAddVisit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPatientMenu.setText("Patient");
 
         jMenuAddPatient.setText("Add new");
-        jMenuAddPatient.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuAddPatientMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuAddPatientMousePressed(evt);
+        jMenuAddPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAddPatientActionPerformed(evt);
             }
         });
         jPatientMenu.add(jMenuAddPatient);
 
-        jMenuItem2.setText("Add Visit");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuAddVisit.setText("Add Visit");
+        jMenuAddVisit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuAddVisitActionPerformed(evt);
             }
         });
-        jPatientMenu.add(jMenuItem2);
+        jPatientMenu.add(jMenuAddVisit);
 
         jMenuBar1.add(jPatientMenu);
 
@@ -86,18 +96,15 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuAddVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVisitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        iclinic.controller.PatientController.Search();
+    }//GEN-LAST:event_jMenuAddVisitActionPerformed
 
-    private void jMenuAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAddPatientMouseClicked
+    private void jMenuAddPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddPatientActionPerformed
         // TODO add your handling code here:
-        //iclinic.controller.Main.AddPatient();
-    }//GEN-LAST:event_jMenuAddPatientMouseClicked
-
-    private void jMenuAddPatientMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAddPatientMousePressed
-        iclinic.controller.Main.AddPatient();
-    }//GEN-LAST:event_jMenuAddPatientMousePressed
+        iclinic.controller.PatientController.Add();
+    }//GEN-LAST:event_jMenuAddPatientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,8 +146,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuAddPatient;
+    private javax.swing.JMenuItem jMenuAddVisit;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jPatientMenu;
     // End of variables declaration//GEN-END:variables
 }
