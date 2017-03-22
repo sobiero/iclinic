@@ -25,6 +25,15 @@ public class PatientForm extends javax.swing.JDialog {
         this.setTitle(" Add Patient");
         initComponents();
     }
+    
+    public void clearForm()
+    {
+        jTextSurname.setText("");
+        jTextFirstName.setText("");
+        jTextDoB.setText("");
+        jTextStdID.setText("");
+        jTextNhif.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,17 +63,19 @@ public class PatientForm extends javax.swing.JDialog {
         jTextStdID = new javax.swing.JTextField();
         jLabelNhif = new javax.swing.JLabel();
         jTextNhif = new javax.swing.JTextField();
-        jLabelSurname1 = new javax.swing.JLabel();
-        jTextSurname1 = new javax.swing.JTextField();
-        jLabelSurname2 = new javax.swing.JLabel();
-        jTextSurname2 = new javax.swing.JTextField();
-        jLabelSurname3 = new javax.swing.JLabel();
-        jTextSurname3 = new javax.swing.JTextField();
-        jTextSurname4 = new javax.swing.JTextField();
-        jLabelSurname4 = new javax.swing.JLabel();
-        jTextSurname5 = new javax.swing.JTextField();
-        jLabelSurname5 = new javax.swing.JLabel();
+        jLabelNextOfKin = new javax.swing.JLabel();
+        jTextNextOfKin = new javax.swing.JTextField();
+        jLabelEmergencyNbr = new javax.swing.JLabel();
+        jTextEmergencyNbr = new javax.swing.JTextField();
+        jLabelAddress = new javax.swing.JLabel();
+        jTextAddress = new javax.swing.JTextField();
+        jTextCity = new javax.swing.JTextField();
+        jLabelCity = new javax.swing.JLabel();
+        jTextMobile = new javax.swing.JTextField();
+        jLabelMobile = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabelSaveNotification = new javax.swing.JLabel();
+        jButtonClearForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,6 +114,11 @@ public class PatientForm extends javax.swing.JDialog {
 
         jButtonSave.setText("Save");
         jButtonSave.setToolTipText("Save patient");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         jLabelDoB.setText("Date of birth");
 
@@ -122,35 +138,49 @@ public class PatientForm extends javax.swing.JDialog {
 
         jLabelNhif.setText("NHIF");
 
-        jLabelSurname1.setText("Next of kin name");
+        jLabelNextOfKin.setText("Next of kin name");
 
-        jTextSurname1.setToolTipText("");
+        jTextNextOfKin.setToolTipText("");
 
-        jLabelSurname2.setText("Emergency phone");
+        jLabelEmergencyNbr.setText("Emergency phone");
 
-        jTextSurname2.setToolTipText("");
+        jTextEmergencyNbr.setToolTipText("");
 
-        jLabelSurname3.setText("Address");
+        jLabelAddress.setText("Address");
 
-        jTextSurname3.setToolTipText("");
+        jTextAddress.setToolTipText("");
 
-        jTextSurname4.setToolTipText("");
+        jTextCity.setToolTipText("");
 
-        jLabelSurname4.setText("City");
+        jLabelCity.setText("City");
 
-        jTextSurname5.setToolTipText("");
+        jTextMobile.setToolTipText("");
 
-        jLabelSurname5.setText("Mobile");
+        jLabelMobile.setText("Mobile");
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabelSaveNotification.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jButtonClearForm.setText("Clear form");
+        jButtonClearForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearFormActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(376, Short.MAX_VALUE)
+                        .addComponent(jButtonClearForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBasicDetails)
@@ -172,91 +202,94 @@ public class PatientForm extends javax.swing.JDialog {
                                     .addComponent(jTextStdID)
                                     .addComponent(jTextNhif)
                                     .addComponent(jComboGender, 0, 162, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelSurname2)
-                                    .addComponent(jLabelSurname1)
-                                    .addComponent(jLabelSurname3)
-                                    .addComponent(jLabelSurname4)
-                                    .addComponent(jLabelSurname5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextSurname2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .addComponent(jTextSurname1)
-                                    .addComponent(jTextSurname3, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .addComponent(jTextSurname4, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .addComponent(jTextSurname5, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelEmergencyNbr)
+                                            .addComponent(jLabelNextOfKin)
+                                            .addComponent(jLabelAddress)
+                                            .addComponent(jLabelCity)
+                                            .addComponent(jLabelMobile))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextEmergencyNbr, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                            .addComponent(jTextNextOfKin)
+                                            .addComponent(jTextAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                            .addComponent(jTextCity, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                            .addComponent(jTextMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelBasicDetails)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboTitle)
-                                .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelSurname)
-                                .addComponent(jTextSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelFirstName))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextDoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelDoB))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelGender)
-                                .addComponent(jComboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextStdID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelStdID))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextNhif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelNhif)))
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelBasicDetails)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboTitle)
+                            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelSurname)
+                            .addComponent(jTextSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelFirstName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextDoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDoB))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelGender)
+                            .addComponent(jComboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextStdID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelStdID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextNhif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelNhif)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSurname1)
-                            .addComponent(jTextSurname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelNextOfKin)
+                            .addComponent(jTextNextOfKin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSurname2)
-                            .addComponent(jTextSurname2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelEmergencyNbr)
+                            .addComponent(jTextEmergencyNbr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSurname3)
-                            .addComponent(jTextSurname3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelAddress)
+                            .addComponent(jTextAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSurname4)
-                            .addComponent(jTextSurname4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelCity)
+                            .addComponent(jTextCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSurname5)
-                            .addComponent(jTextSurname5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButtonSave)
+                            .addComponent(jLabelMobile)
+                            .addComponent(jTextMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator2))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonClearForm)
+                    .addComponent(jButtonSave))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -274,6 +307,16 @@ public class PatientForm extends javax.swing.JDialog {
     private void jTextFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFirstNameActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        iclinic.controller.PatientController.Save();
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonClearFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFormActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_jButtonClearFormActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,39 +363,43 @@ public class PatientForm extends javax.swing.JDialog {
         });
     }
     
-    public void setjT(String m)
+    public void setSaveNotificationText(String m, Color color)
     {
-        //jTextField1.setText(m);
+        jLabelSaveNotification.setText(m);
+        jLabelSaveNotification.setForeground(color);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonClearForm;
     private javax.swing.JButton jButtonSave;
-    private javax.swing.JComboBox<String> jComboGender;
-    private javax.swing.JComboBox<String> jComboTitle;
+    public javax.swing.JComboBox<String> jComboGender;
+    public javax.swing.JComboBox<String> jComboTitle;
     private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabelAddress;
     private javax.swing.JLabel jLabelBasicDetails;
+    public javax.swing.JLabel jLabelCity;
     private javax.swing.JLabel jLabelDoB;
+    public javax.swing.JLabel jLabelEmergencyNbr;
     private javax.swing.JLabel jLabelFirstName;
     private javax.swing.JLabel jLabelGender;
+    private javax.swing.JLabel jLabelMobile;
+    private javax.swing.JLabel jLabelNextOfKin;
     private javax.swing.JLabel jLabelNhif;
+    private javax.swing.JLabel jLabelSaveNotification;
     private javax.swing.JLabel jLabelStdID;
     private javax.swing.JLabel jLabelSurname;
-    private javax.swing.JLabel jLabelSurname1;
-    private javax.swing.JLabel jLabelSurname2;
-    private javax.swing.JLabel jLabelSurname3;
-    private javax.swing.JLabel jLabelSurname4;
-    private javax.swing.JLabel jLabelSurname5;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextDoB;
-    private javax.swing.JTextField jTextFirstName;
-    private javax.swing.JTextField jTextNhif;
-    private javax.swing.JTextField jTextStdID;
-    private javax.swing.JTextField jTextSurname;
-    private javax.swing.JTextField jTextSurname1;
-    private javax.swing.JTextField jTextSurname2;
-    private javax.swing.JTextField jTextSurname3;
-    private javax.swing.JTextField jTextSurname4;
-    private javax.swing.JTextField jTextSurname5;
+    public javax.swing.JTextField jTextAddress;
+    public javax.swing.JTextField jTextCity;
+    public javax.swing.JTextField jTextDoB;
+    private javax.swing.JTextField jTextEmergencyNbr;
+    public javax.swing.JTextField jTextFirstName;
+    public javax.swing.JTextField jTextMobile;
+    public javax.swing.JTextField jTextNextOfKin;
+    public javax.swing.JTextField jTextNhif;
+    public javax.swing.JTextField jTextStdID;
+    public javax.swing.JTextField jTextSurname;
     // End of variables declaration//GEN-END:variables
 }
