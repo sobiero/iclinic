@@ -5,6 +5,8 @@
  */
 package iclinic.views;
 
+import iclinic.views.patients.AddPatient;
+
 /**
  *
  * @author obiero
@@ -15,9 +17,13 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     
-    private PasswordDialog passDialog;
+    public static PasswordDialog passDialog;
+    public static AddPatient addPatient;
      
     public MainWindow() {
+        
+        addPatient = new AddPatient(this, true);
+        addPatient.setVisible(false);
         
         passDialog = new PasswordDialog(this, true);
         passDialog.setVisible(true);
@@ -35,17 +41,24 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jFileMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jPatientMenu = new javax.swing.JMenu();
+        jMenuAddPatient = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jFileMenu.setText("Patient");
+        jPatientMenu.setText("Patient");
 
-        jMenuItem1.setText("Add new");
-        jFileMenu.add(jMenuItem1);
+        jMenuAddPatient.setText("Add new");
+        jMenuAddPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuAddPatientMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuAddPatientMousePressed(evt);
+            }
+        });
+        jPatientMenu.add(jMenuAddPatient);
 
         jMenuItem2.setText("Add Visit");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -53,17 +66,9 @@ public class MainWindow extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jFileMenu.add(jMenuItem2);
+        jPatientMenu.add(jMenuItem2);
 
-        jMenuBar1.add(jFileMenu);
-
-        jMenu2.setText("Edit");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jPatientMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -81,13 +86,18 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAddPatientMouseClicked
+        // TODO add your handling code here:
+        //iclinic.controller.Main.AddPatient();
+    }//GEN-LAST:event_jMenuAddPatientMouseClicked
+
+    private void jMenuAddPatientMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAddPatientMousePressed
+        iclinic.controller.Main.AddPatient();
+    }//GEN-LAST:event_jMenuAddPatientMousePressed
 
     /**
      * @param args the command line arguments
@@ -128,10 +138,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jFileMenu;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuAddPatient;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jPatientMenu;
     // End of variables declaration//GEN-END:variables
 }

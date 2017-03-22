@@ -18,9 +18,9 @@ import java.util.Properties;
 public class Iclinic {
     
     public static final Properties CONFIG = new Properties();
-    public static final DbConn    DB_CONN = new DbConn(CONFIG);
-    
-    public Iclinic()
+    public static final DbConn    DB_CONN = new DbConn(CONFIG);    
+     
+     public Iclinic()
     {
         try 
         {
@@ -59,6 +59,7 @@ public class Iclinic {
         MainWindow mainWindow = new MainWindow();
         mainWindow.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
         mainWindow.setVisible(true);
+               
     }
     
 }
