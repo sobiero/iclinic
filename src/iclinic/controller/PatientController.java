@@ -5,15 +5,22 @@
  */
 package iclinic.controller;
 
+import static iclinic.models.BaseModel.DB_CONN;
 import iclinic.models.Patient;
+import iclinic.models.PatientContact;
 import iclinic.views.MainWindow;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
  * @author obieros
  */
 public class PatientController extends BaseController {
+    
+    
+    public static Connection conn   = DB_CONN.getConn();
     
     public static void Add()
     {      
@@ -24,7 +31,10 @@ public class PatientController extends BaseController {
     
     public static void Save()
     {
-       Patient patient = new Patient();
+      
+        
+        
+        Patient patient = new Patient();
        //jComboTitle
        patient.setTitle((String)MainWindow.patientForm.jComboTitle
                         .getSelectedItem());
@@ -39,15 +49,47 @@ public class PatientController extends BaseController {
        
        try
        {
+           conn.setAutoCommit(false);
+            
            int id = patient.save();
+           
+           PatientContact patientContact = new PatientContact();
+           
+           patientContact.setAddedByUserId(1);
+           patientContact.setPatientId(id);
+           patientContact.setNextOfKinName(MainWindow.patientForm
+                   .jTextNextOfKin.getText());
+           
+           patientContact.setEmergencyPhone(MainWindow.patientForm
+                   .jTextEmergencyNbr.getText());
+           
+           patientContact.setAddress(MainWindow.patientForm
+                   .jTextAddress.getText());
+           
+           patientContact.setCity(MainWindow.patientForm.jTextCity.getText());
+           patientContact.setMobile(MainWindow.patientForm.jTextMobile
+                   .getText());
+           
+           patientContact.save();
+           
            MainWindow.patientForm.setSaveNotificationText(
                    "Patient saved with ID :" + id, new Color(0, 150, 0));
            MainWindow.patientForm.clearForm();
+           
+           conn.commit();
        
        }catch ( Exception e )
        {
            MainWindow.patientForm.setSaveNotificationText(e.getMessage(),
                   new Color(200, 0, 0) );
+           try
+           { 
+            conn.rollback();
+           }
+           catch (SQLException e2)
+           {
+           
+           }
        }
        
        

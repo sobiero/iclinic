@@ -125,7 +125,7 @@ public class Patient extends BaseModel  {
     }
 
     public void setNhif(String nhif) {
-        this.nhif = nhif;
+        this.nhif = "".equals(nhif.trim()) ? null : nhif ;
     }
 
     public Integer getAddedByUserId() {

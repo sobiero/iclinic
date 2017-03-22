@@ -33,6 +33,12 @@ public class PatientForm extends javax.swing.JDialog {
         jTextDoB.setText("");
         jTextStdID.setText("");
         jTextNhif.setText("");
+        
+        jTextNextOfKin.setText("");
+        jTextEmergencyNbr.setText("");
+        jTextAddress.setText("");
+        jTextCity.setText("");
+        jTextMobile.setText("");
     }
 
     /**
@@ -161,6 +167,7 @@ public class PatientForm extends javax.swing.JDialog {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabelSaveNotification.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelSaveNotification.setMaximumSize(new java.awt.Dimension(500, 55));
 
         jButtonClearForm.setText("Clear form");
         jButtonClearForm.addActionListener(new java.awt.event.ActionListener() {
@@ -173,9 +180,9 @@ public class PatientForm extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(376, Short.MAX_VALUE)
                         .addComponent(jButtonClearForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
@@ -183,29 +190,29 @@ public class PatientForm extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBasicDetails)
+                            .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelSurname)
-                                    .addComponent(jLabelTitle)
-                                    .addComponent(jLabelFirstName)
-                                    .addComponent(jLabelDoB)
-                                    .addComponent(jLabelGender)
-                                    .addComponent(jLabelStdID)
-                                    .addComponent(jLabelNhif))
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboTitle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextSurname)
-                                    .addComponent(jTextFirstName)
-                                    .addComponent(jTextDoB)
-                                    .addComponent(jTextStdID)
-                                    .addComponent(jTextNhif)
-                                    .addComponent(jComboGender, 0, 162, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelBasicDetails)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelSurname)
+                                            .addComponent(jLabelTitle)
+                                            .addComponent(jLabelFirstName)
+                                            .addComponent(jLabelDoB)
+                                            .addComponent(jLabelGender)
+                                            .addComponent(jLabelStdID)
+                                            .addComponent(jLabelNhif))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jComboTitle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextSurname)
+                                            .addComponent(jTextFirstName)
+                                            .addComponent(jTextDoB)
+                                            .addComponent(jTextStdID)
+                                            .addComponent(jTextNhif)
+                                            .addComponent(jComboGender, 0, 162, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +295,8 @@ public class PatientForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonClearForm)
                     .addComponent(jButtonSave))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -394,7 +401,7 @@ public class PatientForm extends javax.swing.JDialog {
     public javax.swing.JTextField jTextAddress;
     public javax.swing.JTextField jTextCity;
     public javax.swing.JTextField jTextDoB;
-    private javax.swing.JTextField jTextEmergencyNbr;
+    public javax.swing.JTextField jTextEmergencyNbr;
     public javax.swing.JTextField jTextFirstName;
     public javax.swing.JTextField jTextMobile;
     public javax.swing.JTextField jTextNextOfKin;
