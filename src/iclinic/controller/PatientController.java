@@ -32,9 +32,7 @@ public class PatientController extends BaseController {
     public static void Save()
     {
       
-        
-        
-        Patient patient = new Patient();
+       Patient patient = new Patient();
        //jComboTitle
        patient.setTitle((String)MainWindow.patientForm.jComboTitle
                         .getSelectedItem());

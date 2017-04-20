@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 /**
  *
  * @author obiero
@@ -49,6 +50,23 @@ public class Patient extends BaseModel  {
     public Patient(Integer id) {
         this.id = id;
     }
+    
+    public Patient (Integer id, String title, String surname, String fname,
+                String dob, String gender, String studentId, String nhif)
+    {
+        
+        this.id = id;    
+        this.title = title;   
+        this.surname = surname;  
+        this.fname = fname;  
+        this.dob = dob;  
+        this.gender = gender;
+        this.studentId = studentId;
+        this.nhif = nhif;
+        
+    }
+    
+    
 
     public Integer getId() {
         return id;
@@ -71,7 +89,7 @@ public class Patient extends BaseModel  {
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+        this.surname = "".equals(surname.trim()) ? null : surname ;
     }
 
     public String getFname() {
@@ -79,7 +97,7 @@ public class Patient extends BaseModel  {
     }
 
     public void setFname(String fname) {
-        this.fname = fname;
+        this.fname = "".equals(fname.trim()) ? null : fname ;
     }
 
     public String getDob() {
@@ -87,7 +105,7 @@ public class Patient extends BaseModel  {
     }
 
     public void setDob(String dob) {
-        this.dob = dob;
+        this.dob = "".equals(dob.trim()) ? null : dob ;
     }
 
     public String getGender() {
@@ -144,12 +162,39 @@ public class Patient extends BaseModel  {
         this.dateAdded = dateAdded;
     }
     
-    
-    public static <list>Patient find(String params)
+    public static ArrayList<Patient> find(String params)
     {
-       // String qry = "SELECT * FROM " + tableName ;
+        ArrayList<Patient> patientList = new ArrayList<Patient>();
+        try{
+        
+        String qry = "SELECT * FROM " + tableName + params;
+        PreparedStatement findPatient = conn.prepareStatement(qry);
+            //findUser.setString(1, username);
+            ResultSet rs = findPatient.executeQuery();          
+            
+            while (rs.next()) 
+            {
+                Patient patient = new Patient(
+                rs.getInt("id"), rs.getString("title"), rs.getString("surname"),
+                rs.getString("fname"), rs.getString("dob"), rs.getString("gender"), 
+                rs.getString("student_id"), rs.getString("nhif"));
+                
+                patientList.add(patient);
+            }
+            
+             } catch (SQLException e) {
+            //throw new IllegalStateException("Cannot connect the database!", e);
+                System.out.println("SQL-Exception: " + e.getMessage());
+           
+        } catch (Exception e) {
+            //throw new IllegalStateException("Cannot connect the database!", e);
+                System.out.println("Exception: " + e.getMessage());
+        } finally {
+                
+            
+        }
     
-        return new Patient();
+        return patientList;
     }
     
     public static Patient findFirst(String params)
@@ -210,6 +255,11 @@ public class Patient extends BaseModel  {
 	}
         
        return id; 
+    }
+    
+    @Override
+    public String toString() {
+        return getTitle() + " " + getFname() + " " + getSurname(); 
     }
 
     

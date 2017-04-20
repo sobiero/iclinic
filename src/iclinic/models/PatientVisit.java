@@ -5,49 +5,30 @@
  */
 package iclinic.models;
 
-import java.io.Serializable;
-import java.util.Collection;
+import static iclinic.models.BaseModel.DB_CONN;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 /**
  *
  * @author obiero
  */
-@Entity
-@Table(name = "patients_visits")
-@NamedQueries({
-    @NamedQuery(name = "PatientVisit.findAll", query = "SELECT p FROM PatientVisit p")})
-public class PatientVisit implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+public class PatientVisit extends BaseModel {
+
+    public static Connection conn   = DB_CONN.getConn();
+    public static String tableName  = "patients_contacts";
+   
     private Integer id;
-    @Column(name = "visit_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date visitDate;
-    @JoinColumn(name = "visit_stage_id", referencedColumnName = "id")
-    @ManyToOne
-    private PatientVisitStage visitStageId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientVisit")
-    private Collection<PatientVitals> patientVitalsCollection;
+    
+    private Integer patientId;
+     
+    private String visitDate;
+    
+    private Integer visitStageId;
 
     public PatientVisit() {
     }
@@ -63,54 +44,77 @@ public class PatientVisit implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+     public Integer getPatientId() {
+        return patientId;
+    }
 
-    public Date getVisitDate() {
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(Date visitDate) {
+    public void setVisitDate(String visitDate) {
         this.visitDate = visitDate;
     }
 
-    public PatientVisitStage getVisitStageId() {
+    public Integer getVisitStageId() {
         return visitStageId;
     }
 
-    public void setVisitStageId(PatientVisitStage visitStageId) {
+    public void setVisitStageId(Integer visitStageId) {
         this.visitStageId = visitStageId;
     }
 
-    public Collection<PatientVitals> getPatientVitalsCollection() {
-        return patientVitalsCollection;
+    public int save () throws Exception
+    {
+        int id = 0;
+        
+        String qry = "INSERT INTO patients_visits "
+                + "( patient_id, visit_date, "
+                + "visit_stage_id)"
+                + " VALUES (?,?,?)";
+
+        try 
+        {    
+            PreparedStatement stmt = conn.prepareStatement(qry, 
+                                      PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            stmt.setInt(1, this.getPatientId());
+            stmt.setString(2, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                                                .format(new Date()));
+            stmt.setInt(3, this.getVisitStageId());
+            
+            stmt.executeUpdate();
+            
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()){
+                id =rs.getInt(1);
+            }
+            
+            System.out.println(id);
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println(e.getMessage());
+            throw new Exception( e.getMessage() );            
+	} 
+        finally 
+        {
+            /*
+	    if (stmt != null) {
+		stmt.close();
+	    }
+            */
+	}
+        
+       return id; 
     }
 
-    public void setPatientVitalsCollection(Collection<PatientVitals> patientVitalsCollection) {
-        this.patientVitalsCollection = patientVitalsCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PatientVisit)) {
-            return false;
-        }
-        PatientVisit other = (PatientVisit) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "iclinic.models.PatientVisit[ id=" + id + " ]";
-    }
+    
     
 }
