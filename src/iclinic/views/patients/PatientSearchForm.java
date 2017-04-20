@@ -5,7 +5,10 @@
  */
 package iclinic.views.patients;
 
+import iclinic.models.Patient;
+import iclinic.models.PatientComboBoxModel;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import jiconfont.icons.FontAwesome;
 import jiconfont.swing.IconFontSwing;
@@ -18,13 +21,43 @@ public class PatientSearchForm extends javax.swing.JDialog {
 
     /**
      * Creates new form AddPatient
+     * @param parent
+     * @param modal
      */
+    
+    static PatientComboBoxModel patientComboBoxModel;
+    
     public PatientSearchForm(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         this.setTitle("Search Patient");
+       
         initComponents();
     }
+    
+    public static void refreshPatientsListForCombo(javax.swing.JComboBox jCombo)
+    {
+        jCombo.removeAllItems();
+        ArrayList<Patient> patients = iclinic.models.Patient.find("");
 
+        patientComboBoxModel = new PatientComboBoxModel(patients);
+        jCombo.setModel(patientComboBoxModel);
+
+        /*
+        for (Patient patient: patients)
+        {
+            jCombo.addItem( patient );
+            //System.out.println( patient.getSurname() );
+        } */
+    }
+    
+    public void setSaveNotificationText(String m, Color color)
+    {
+        jLabelSaveNotification.setText(m);
+        jLabelSaveNotification.setForeground(color);
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,16 +67,44 @@ public class PatientSearchForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         IconFontSwing.register(FontAwesome.getIconFont());
         Icon icon = IconFontSwing.buildIcon(FontAwesome.SMILE_O, 40, new Color(0, 150, 0));
         jLabel1 = new javax.swing.JLabel(icon);
+        jComboPatientsList = new javax.swing.JComboBox<>();
+        jButtonRefreshPatientsList = new javax.swing.JButton();
+        jButtonAddNewPatient = new javax.swing.JButton();
+        jButtonAddPatientVisit = new javax.swing.JButton();
+        jLabelSaveNotification = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        jLabel1.setText("Select Patient");
 
-        jLabel1.setText("Search by name or ID");
+        //jComboPatientsList.setModel(patientComboBoxModel);
+
+        jButtonRefreshPatientsList.setText("Refresh");
+        jButtonRefreshPatientsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshPatientsListActionPerformed(evt);
+            }
+        });
+
+        jButtonAddNewPatient.setText("Add New");
+        jButtonAddNewPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddNewPatientActionPerformed(evt);
+            }
+        });
+
+        jButtonAddPatientVisit.setText("Add Visit");
+        jButtonAddPatientVisit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddPatientVisitActionPerformed(evt);
+            }
+        });
+
+        jLabelSaveNotification.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelSaveNotification.setMaximumSize(new java.awt.Dimension(500, 55));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,9 +112,20 @@ public class PatientSearchForm extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButtonRefreshPatientsList)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButtonAddNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAddPatientVisit)))
+                    .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -61,13 +133,42 @@ public class PatientSearchForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRefreshPatientsList))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddNewPatient)
+                    .addComponent(jButtonAddPatientVisit))
+                .addGap(7, 7, 7)
+                .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        //refreshPatientsListForCombo(jComboPatientsList);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRefreshPatientsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshPatientsListActionPerformed
+        // TODO add your handling code here:
+        refreshPatientsListForCombo(jComboPatientsList);
+    }//GEN-LAST:event_jButtonRefreshPatientsListActionPerformed
+
+    private void jButtonAddNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddNewPatientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAddNewPatientActionPerformed
+
+    private void jButtonAddPatientVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPatientVisitActionPerformed
+        //Patient patient = jComboPatientsList.getSelectedObjects();
+        Object m = jComboPatientsList.getSelectedItem();
+        //m.
+        //m.getId();
+        //System.out.print(m);
+        //Patient patient = jComboPatientsList.getSelectionModel().getSelectedItem();
+       // iclinic.controller.PatientVisitController.Save( patient );
+        
+    }//GEN-LAST:event_jButtonAddPatientVisitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,11 +221,15 @@ public class PatientSearchForm extends javax.swing.JDialog {
     
     public void setjT(String m)
     {
-        jTextField1.setText(m);
+        //jTextField1.setText(m);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton jButtonAddNewPatient;
+    private javax.swing.JButton jButtonAddPatientVisit;
+    private javax.swing.JButton jButtonRefreshPatientsList;
+    public javax.swing.JComboBox<String> jComboPatientsList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabelSaveNotification;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,7 +20,7 @@ public class Iclinic {
     public static final Properties CONFIG = new Properties();
     public static final DbConn    DB_CONN = new DbConn(CONFIG);    
      
-     public Iclinic()
+    public Iclinic()
     {
         try 
         {

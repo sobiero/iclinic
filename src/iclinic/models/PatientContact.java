@@ -122,7 +122,6 @@ public class PatientContact extends BaseModel {
         this.dateAdded = dateAdded;
     }
     
-    
     public int save () throws Exception
     {
         int id = 0;
