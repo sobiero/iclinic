@@ -6,6 +6,8 @@
 package iclinic.views.patients;
 
 import java.awt.Color;
+import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import jiconfont.icons.FontAwesome;
 import jiconfont.swing.IconFontSwing;
@@ -22,6 +24,7 @@ public class PatientSearchForm extends javax.swing.JDialog {
     public PatientSearchForm(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         this.setTitle("Search Patient");
+        ArrayList Patients = iclinic.models.Patient.getAll();
         initComponents();
     }
 
@@ -40,8 +43,6 @@ public class PatientSearchForm extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel(icon);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jTextField1.setText("jTextField1");
 
         jLabel1.setText("Search by name or ID");
 

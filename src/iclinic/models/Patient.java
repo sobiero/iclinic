@@ -6,12 +6,14 @@
 package iclinic.models;
 
 import static iclinic.models.BaseModel.DB_CONN;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 /**
  *
  * @author obiero
@@ -21,6 +23,14 @@ public class Patient extends BaseModel  {
 
     public static Connection conn   = DB_CONN.getConn();
     public static String tableName  = "patients";
+
+    public static List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static ArrayList getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     private Integer id = null;
@@ -212,5 +222,39 @@ public class Patient extends BaseModel  {
        return id; 
     }
 
+    public ArrayList<Patient> getAllPatients()
+    {
+        ArrayList<Patient> customers = new ArrayList<Patient>();
+    Patient customer = null;
+    Connection c;
+    try {
+        c = openConnection();
+        Statement statement = c.createStatement();
+        String s = "SELECT * FROM customer";
+
+        ResultSet rs = statement.executeQuery(s);
+        int g =0;
+
+        while (rs.next()) {
+
+            customer.setId(rs.getInt("id"));
+            customer.setName(rs.getString("name"));
+
+            customer.setAddress(rs.getString("address"));
+            customer.setPhone(rs.getString("phone"));
+            customer.setEmail(rs.getString("email"));
+            customer.setStudentId(rs.getString("studentid"));
+            customer.setTotalsale(rs.getInt("totalsale"));
+
+            customers.add(customer);
+        }
+
+        rs.close();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+
+        return patients;
+    }
     
 }
