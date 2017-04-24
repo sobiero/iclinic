@@ -29,6 +29,8 @@ public class MainWindow extends javax.swing.JFrame {
      
     public MainWindow() {
         
+        this.setTitle("Welcome to USIU iClinic");
+        
         patientForm = new PatientForm(this, true);
         patientForm.setLocationRelativeTo(this);
         patientForm.setVisible(false);
@@ -53,58 +55,141 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jPatientMenu = new javax.swing.JMenu();
-        jMenuAddPatient = new javax.swing.JMenuItem();
-        jMenuAddVisit = new javax.swing.JMenuItem();
+        IconFontSwing.register(FontAwesome.getIconFont());
+        Icon icon = IconFontSwing.buildIcon(FontAwesome.USER, 24, new Color(0, 150, 0));
+        jButtonRegisterPatient = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.SEARCH, 24, new Color(0, 150, 0));
+        jButtonSearchPatient = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.CALENDAR_CHECK_O, 24, new Color(0, 150, 0));
+        jButtonAddVisit = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.HEARTBEAT, 24, new Color(0, 150, 0));
+        jButtonCaptureVitals = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.FLASK, 24, new Color(0, 150, 0));
+        jButtonLaboratory = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.MONEY, 24, new Color(0, 150, 0));
+        jButtonBilling = new javax.swing.JButton(icon);
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPatientMenu.setText("Patient");
-
-        jMenuAddPatient.setText("Add new");
-        jMenuAddPatient.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegisterPatient.setText("Register Patient");
+        jButtonRegisterPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddPatientActionPerformed(evt);
+                jButtonRegisterPatientActionPerformed(evt);
             }
         });
-        jPatientMenu.add(jMenuAddPatient);
 
-        jMenuAddVisit.setText("Add Visit");
-        jMenuAddVisit.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSearchPatient.setText("Search Patient");
+        jButtonSearchPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAddVisitActionPerformed(evt);
+                jButtonSearchPatientActionPerformed(evt);
             }
         });
-        jPatientMenu.add(jMenuAddVisit);
 
-        jMenuBar1.add(jPatientMenu);
+        jButtonAddVisit.setText("Add Visit");
+        jButtonAddVisit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddVisitActionPerformed(evt);
+            }
+        });
 
-        setJMenuBar(jMenuBar1);
+        jButtonCaptureVitals.setText("Capture Vitals");
+        jButtonCaptureVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCaptureVitalsActionPerformed(evt);
+            }
+        });
+
+        jButtonLaboratory.setText("Laboratory");
+        jButtonLaboratory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLaboratoryActionPerformed(evt);
+            }
+        });
+
+        jButtonBilling.setText("Billing");
+        jButtonBilling.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBillingActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\usiu\\mis6030\\iclinic\\resources\\imgs\\logo02.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jButtonRegisterPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAddVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCaptureVitals, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jButtonLaboratory, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonBilling, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(jLabel2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRegisterPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCaptureVitals, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLaboratory, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBilling, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuAddVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddVisitActionPerformed
-        // TODO add your handling code here:
-        iclinic.controller.PatientController.Search();
-    }//GEN-LAST:event_jMenuAddVisitActionPerformed
-
-    private void jMenuAddPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddPatientActionPerformed
+    private void jButtonRegisterPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterPatientActionPerformed
         // TODO add your handling code here:
         iclinic.controller.PatientController.Add();
-    }//GEN-LAST:event_jMenuAddPatientActionPerformed
+    }//GEN-LAST:event_jButtonRegisterPatientActionPerformed
+
+    private void jButtonSearchPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchPatientActionPerformed
+        // TODO add your handling code here:
+        iclinic.controller.PatientController.Search();
+    }//GEN-LAST:event_jButtonSearchPatientActionPerformed
+
+    private void jButtonAddVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddVisitActionPerformed
+        // TODO add your handling code here:
+        iclinic.controller.PatientController.Search();
+    }//GEN-LAST:event_jButtonAddVisitActionPerformed
+
+    private void jButtonCaptureVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaptureVitalsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCaptureVitalsActionPerformed
+
+    private void jButtonLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLaboratoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLaboratoryActionPerformed
+
+    private void jButtonBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBillingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBillingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,9 +230,12 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuAddPatient;
-    private javax.swing.JMenuItem jMenuAddVisit;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jPatientMenu;
+    private javax.swing.JButton jButtonAddVisit;
+    private javax.swing.JButton jButtonBilling;
+    private javax.swing.JButton jButtonCaptureVitals;
+    private javax.swing.JButton jButtonLaboratory;
+    private javax.swing.JButton jButtonRegisterPatient;
+    private javax.swing.JButton jButtonSearchPatient;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
