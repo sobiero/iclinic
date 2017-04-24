@@ -24,7 +24,8 @@ public class PatientController extends BaseController {
     
     public static void Add()
     {      
-        //MainWindow.patientForm.setjT("opuk nyawawa");
+        //MainWindow.patientForm.setjT("opuk nyawawa");     
+       MainWindow.patientSearchForm.setVisible(false);
        MainWindow.patientForm.setVisible(true);
    
     }

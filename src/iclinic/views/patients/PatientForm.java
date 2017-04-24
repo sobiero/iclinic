@@ -19,6 +19,9 @@ public class PatientForm extends javax.swing.JDialog {
     /**
      * Creates new form AddPatient
      */
+    
+    Icon icon;
+    
     public PatientForm(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         IconFontSwing.register(FontAwesome.getIconFont());
@@ -56,11 +59,11 @@ public class PatientForm extends javax.swing.JDialog {
         jLabelFirstName = new javax.swing.JLabel();
         jTextFirstName = new javax.swing.JTextField();
         jComboTitle = new javax.swing.JComboBox<>();
-        Icon iconBasicDetails = IconFontSwing.buildIcon(FontAwesome.USER_PLUS, 25, new Color(0, 150, 0));
-        jLabelBasicDetails = new javax.swing.JLabel(iconBasicDetails);
+        icon = IconFontSwing.buildIcon(FontAwesome.USER_PLUS, 25, new Color(0, 150, 0));
+        jLabelBasicDetails = new javax.swing.JLabel(icon);
         jLabel5 = new javax.swing.JLabel();
-        Icon iconSave = IconFontSwing.buildIcon(FontAwesome.SMILE_O, 15, new Color(0, 150, 0));
-        jButtonSave = new javax.swing.JButton(iconSave);
+        icon = IconFontSwing.buildIcon(FontAwesome.FLOPPY_O, 15, new Color(0, 150, 0));
+        jButtonSave = new javax.swing.JButton(icon);
         jLabelDoB = new javax.swing.JLabel();
         jTextDoB = new javax.swing.JTextField();
         jLabelGender = new javax.swing.JLabel();
@@ -81,7 +84,8 @@ public class PatientForm extends javax.swing.JDialog {
         jLabelMobile = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabelSaveNotification = new javax.swing.JLabel();
-        jButtonClearForm = new javax.swing.JButton();
+        icon = IconFontSwing.buildIcon(FontAwesome.UNDO, 15, new Color(0, 150, 0));
+        jButtonClearForm = new javax.swing.JButton(icon);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -169,7 +173,7 @@ public class PatientForm extends javax.swing.JDialog {
         jLabelSaveNotification.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelSaveNotification.setMaximumSize(new java.awt.Dimension(500, 55));
 
-        jButtonClearForm.setText("Clear form");
+        jButtonClearForm.setText("Reset");
         jButtonClearForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClearFormActionPerformed(evt);
@@ -183,10 +187,10 @@ public class PatientForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(376, Short.MAX_VALUE)
-                        .addComponent(jButtonClearForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonClearForm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +216,7 @@ public class PatientForm extends javax.swing.JDialog {
                                             .addComponent(jTextStdID)
                                             .addComponent(jTextNhif)
                                             .addComponent(jComboGender, 0, 162, Short.MAX_VALUE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

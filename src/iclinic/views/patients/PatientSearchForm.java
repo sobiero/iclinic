@@ -26,6 +26,7 @@ public class PatientSearchForm extends javax.swing.JDialog {
      */
     
     static PatientComboBoxModel patientComboBoxModel;
+    Icon icon = null;
     
     public PatientSearchForm(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
@@ -68,12 +69,17 @@ public class PatientSearchForm extends javax.swing.JDialog {
     private void initComponents() {
 
         IconFontSwing.register(FontAwesome.getIconFont());
-        Icon icon = IconFontSwing.buildIcon(FontAwesome.SMILE_O, 40, new Color(0, 150, 0));
+        icon = IconFontSwing.buildIcon(FontAwesome.SEARCH, 19, new Color(0, 150, 0));
         jLabel1 = new javax.swing.JLabel(icon);
         jComboPatientsList = new javax.swing.JComboBox<>();
-        jButtonRefreshPatientsList = new javax.swing.JButton();
-        jButtonAddNewPatient = new javax.swing.JButton();
-        jButtonAddPatientVisit = new javax.swing.JButton();
+        icon = IconFontSwing.buildIcon(FontAwesome.REFRESH, 18, new Color(0, 150, 0));
+        jButtonRefreshPatientsList = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.USER, 18, new Color(0, 150, 0));
+        jButtonAddNewPatient = new javax.swing.JButton(icon);
+        IconFontSwing.register(FontAwesome.getIconFont());
+        icon = IconFontSwing.buildIcon(FontAwesome.CALENDAR, 18, new Color(0, 150, 0));
+        jButtonAddPatientVisit = new javax.swing.JButton(icon);
         jLabelSaveNotification = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,19 +119,17 @@ public class PatientSearchForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButtonRefreshPatientsList)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButtonAddNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAddPatientVisit)))
-                    .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonRefreshPatientsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAddPatientVisit, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,13 +138,13 @@ public class PatientSearchForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRefreshPatientsList))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAddNewPatient)
-                    .addComponent(jButtonAddPatientVisit))
-                .addGap(7, 7, 7)
+                    .addComponent(jComboPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRefreshPatientsList, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonAddNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddPatientVisit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
                 .addComponent(jLabelSaveNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -157,6 +161,7 @@ public class PatientSearchForm extends javax.swing.JDialog {
 
     private void jButtonAddNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddNewPatientActionPerformed
         // TODO add your handling code here:
+        iclinic.controller.PatientController.Add();
     }//GEN-LAST:event_jButtonAddNewPatientActionPerformed
 
     private void jButtonAddPatientVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPatientVisitActionPerformed
